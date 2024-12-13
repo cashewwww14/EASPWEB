@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($user['role'] == 'admin') {
                 header('Location: admin_dashboard.php');
             } else {
-                header('Location: user_dashboard.php');
+                header('Location: index.php');
             }
             exit;
         } else {
@@ -54,6 +54,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: white;
             padding: 20px;
             text-align: center;
+            position: relative;
+        }
+        .back-button {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            background-color: #FFF;
+            color: #00BCD4;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
         }
         form {
             max-width: 500px;
@@ -89,6 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body class="bg-gray-100">
 
     <header>
+        <a href="index.php" class="back-button">&larr; Back to homepage</a>
         <h1 class="text-xl font-bold">Login to News Portal</h1>
     </header>
 
