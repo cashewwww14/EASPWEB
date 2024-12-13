@@ -4,14 +4,16 @@ include('config.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
-    $dob = $_POST['dob'];
+    $birth_date = $_POST['birth_date'];
     $gender = $_POST['gender'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
     if ($password === $confirm_password) {
-        $sql = "INSERT INTO users (name, dob, gender, email, password, role) VALUES ('$name', '$dob', '$gender', '$email', '$password', 'user')";
+        $hashed_password = hash('sha256', $password);
+
+        $sql = "INSERT INTO users (name, birth_date, gender, email, password, role) VALUES ('$name', '$birth_date', '$gender', '$email', '$hashed_password', 'user')";
         if ($conn->query($sql) === TRUE) {
             header('Location: login.php');
         } else {
@@ -43,6 +45,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: white;
             padding: 20px;
             text-align: center;
+            position: relative;
+        }
+        .back-button {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            background-color: #FFF;
+            color: #00BCD4;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
         }
         form {
             max-width: 500px;
@@ -78,6 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body class="bg-gray-100">
 
     <header>
+        <a href="index.php" class="back-button">&larr; Back to homepage</a>
         <h1 class="text-xl font-bold">Register for News Portal</h1>
     </header>
 
@@ -85,8 +104,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="name">Name:</label>
         <input type="text" name="name" required>
 
-        <label for="dob">Date of Birth:</label>
-        <input type="date" name="dob" required>
+        <label for="birth_date">Date of Birth:</label>
+        <input type="date" name="birth_date" required>
 
         <label for="gender">Gender:</label>
         <select name="gender" required>
