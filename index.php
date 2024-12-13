@@ -20,6 +20,17 @@ if (count($conditions) > 0) {
 }
 
 $result = $conn->query($sql);
+
+$user_name = '';
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $user_sql = "SELECT name FROM users WHERE id = '$user_id'";
+    $user_result = $conn->query($user_sql);
+    if ($user_result->num_rows > 0) {
+        $user_row = $user_result->fetch_assoc();
+        $user_name = $user_row['name'];
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +55,7 @@ $result = $conn->query($sql);
         <h1 class="text-xl">News Portal</h1>
         <div>
             <?php if (isset($_SESSION['user_id'])): ?>
-                <span class="mr-4">Hello, <?php echo $_SESSION['role'] === 'admin' ? 'Admin' : 'User'; ?></span>
+                <span class="mr-4">Hello, <?php echo $_SESSION['role'] === 'admin' ? 'Admin' : $user_name; ?></span>
                 <div class="dropdown inline-block relative">
                     <button id="dropdownButton" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                         Dashboard
