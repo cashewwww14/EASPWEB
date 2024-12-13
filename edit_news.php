@@ -62,7 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body class="bg-gray-100">
 
-    <header class="bg-blue-600 text-white p-4 text-center">
+    <header class="bg-blue-600 text-white p-4 flex items-center">
+        <a href="list.php" class="bg-white text-blue-600 px-4 py-2 rounded mr-4">Back to List</a>
         <h1 class="text-xl">Edit News</h1>
     </header>
 
