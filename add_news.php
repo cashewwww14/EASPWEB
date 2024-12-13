@@ -61,7 +61,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body class="bg-gray-100">
 
-    <header class="bg-blue-600 text-white p-4 text-center">
+    <header class="bg-blue-600 text-white p-4 flex justify-between items-center">
+        <a href="admin_dashboard.php" class="text-white bg-blue-500 px-4 py-2 rounded hover:bg-blue-700">Back to Dashboard</a>
         <h1 class="text-xl">Add News</h1>
     </header>
 
